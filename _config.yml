@@ -1,4 +1,10 @@
 title: Test Project's content
 baseurl: "/TestProject"
 
+tipue_search:
+  include:
+    pages: true
+  exclude:
+    files: [Description3.md]
+    
 theme: minima
