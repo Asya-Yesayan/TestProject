@@ -8,8 +8,6 @@ tipue_search:
     files: [Description3.md]
 
 header_pages:
-  - content.md
   - search.html
-  - apiIndex.html
     
 theme: minima
