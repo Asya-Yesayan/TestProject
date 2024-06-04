@@ -27,6 +27,18 @@ layout: null
     {%- endunless -%}
   {%- endunless -%}
 {%- endfor -%}
+
+
+  /*
+    //site.static_files
+  */
+ {%- for file in site.static_files -%}
+ /*
+   // {{ file.path | smartify | strip_html | normalize_whitespace | jsonify }}
+ */
+ {%- endfor -%}
+
+
 {%- if site.tipue_search.include.pages == true -%}
   {%- for page in site.html_pages -%}
     {%- unless page.exclude_from_search == true or excluded_files contains page.path -%}
@@ -78,6 +90,15 @@ var tipuesearch = {"pages": [
     "text": {{ document.content | strip_html | normalize_whitespace | jsonify }},
     "tags": {{ taxonomies | join: " " | normalize_whitespace | jsonify }},
     "url": {{ document.url | relative_url | jsonify }}
-  }{%- unless forloop.last -%},{%- endunless -%}
+  }
+  {%- for link in document.sublinks -%}
+  ,{
+    "title": {{ link.title | smartify | strip_html | normalize_whitespace | jsonify }},
+    "text": {{ document.content | strip_html | normalize_whitespace | jsonify }},
+    "tags": {{ taxonomies | join: " " | normalize_whitespace | jsonify }},
+    "url": {{ document.url | relative_url | jsonify }} + "#" + {{ link.ref | smartify | strip_html | normalize_whitespace | jsonify }}
+  }
+  {%- endfor -%}
+  {%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]};
