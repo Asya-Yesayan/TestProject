@@ -6,5 +6,10 @@ tipue_search:
     pages: true
   exclude:
     files: [Description3.md]
+
+header_pages:
+  - content.md
+  - search.html
+  - apiIndex.html
     
 theme: minima
